@@ -720,13 +720,15 @@ background var(--transition-fast),
   gap: 25px;
 }
 
-.projects-grid-featured {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-bottom: 25px;
+/* A single grid preserves the desktop 2+3 project layout. */
+.projects-grid-all {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
-
-.projects-grid-secondary {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.projects-grid-all > .project-card-featured {
+  grid-column: span 3;
+}
+.projects-grid-all > .project-card:not(.project-card-featured) {
+  grid-column: span 2;
 }
 
 .project-card {
@@ -1376,11 +1378,11 @@ background var(--transition-medium);
   transition-delay: 80ms;
 }
 
-.js-enabled .projects-grid-secondary .project-card:nth-child(3n + 2) {
+.js-enabled .projects-grid-all .project-card:nth-child(3n + 2) {
   transition-delay: 70ms;
 }
 
-.js-enabled .projects-grid-secondary .project-card:nth-child(3n + 3) {
+.js-enabled .projects-grid-all .project-card:nth-child(3n + 3) {
   transition-delay: 140ms;
 }
 
@@ -1461,8 +1463,12 @@ background var(--transition-medium);
   .section-heading h2 {
     font-size: clamp(45px, 5.8vw, 65px);
   }
-  .projects-grid-secondary {
+  .projects-grid-all {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .projects-grid-all > .project-card-featured,
+  .projects-grid-all > .project-card:not(.project-card-featured) {
+    grid-column: auto;
   }
   .technical-card {
     padding: 30px;
@@ -1695,13 +1701,14 @@ background var(--transition-medium);
   .section-intro {
     font-size: 14px;
   }
-  /* Swipeable project and expertise cards */
-  .projects-grid,
+  /* One swipeable row for all eight projects on phones. */
+  .projects-grid-all,
   .technical-grid,
   .expertise-grid {
     grid-template-columns: none;
     grid-auto-flow: column;
     grid-auto-columns: 82%;
+    align-items: stretch;
     gap: 18px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -1712,13 +1719,12 @@ background var(--transition-medium);
     scrollbar-color: var(--color-border) transparent;
     padding-bottom: 16px;
   }
-  .projects-grid > *,
+  .projects-grid-all > .project-card-featured,
+  .projects-grid-all > .project-card:not(.project-card-featured),
   .technical-grid > *,
   .expertise-grid > * {
+    grid-column: auto;
     scroll-snap-align: start;
-  }
-  .projects-grid-featured {
-    margin-bottom: 20px;
   }
   .project-card-featured .project-content,
   .project-content {
