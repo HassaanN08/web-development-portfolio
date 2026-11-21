@@ -166,19 +166,34 @@ ol {
 }
 
 .skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus {
   position: fixed;
-  top: -100px;
+  top: 20px;
   left: 20px;
   z-index: 9999;
+  width: auto;
+  height: auto;
   padding: 12px 20px;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
   border-radius: var(--radius-sm);
   background: var(--color-accent);
   color: var(--color-dark);
   font-weight: 700;
-}
-
-.skip-link:focus {
-  top: 20px;
 }
 
 /* ==========================================================
@@ -839,6 +854,7 @@ background var(--transition-fast),
 
 .project-content > p {
   margin-top: 15px;
+  margin-bottom: 24px;
   color: var(--color-muted);
   font-size: 14px;
   line-height: 1.8;
@@ -851,16 +867,32 @@ background var(--transition-fast),
 
 
 .project-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  align-self: flex-start;
-  gap: 10px;
-  margin-top: 20px;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 42px;
+  margin-top: auto;
+  padding-top: 13px;
+  border-top: 1px solid var(--color-border);
   color: var(--color-dark);
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-link span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #eff5e6;
+  color: var(--color-accent-dark);
+  font-size: 16px;
 }
 
 .project-link:hover {
@@ -921,7 +953,7 @@ background var(--transition-fast),
   transition:
     border-color var(--transition-medium),
     transform var(--transition-medium),
-background var(--transition-medium);
+    background var(--transition-medium);
 }
 
 .technical-card:hover {
@@ -999,6 +1031,7 @@ background var(--transition-medium);
   display: grid;
   gap: 15px;
   margin-top: 26px;
+  margin-bottom: 25px;
   padding-left: 0;
   list-style: none;
 }
@@ -1024,14 +1057,23 @@ background var(--transition-medium);
 
 
 .technical-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  align-self: flex-start;
-  gap: 10px;
-  margin-top: 22px;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid var(--color-border-dark);
   color: var(--color-accent);
   font-size: 12px;
   font-weight: 700;
+  transition: color var(--transition-fast);
+}
+
+.technical-link:hover {
+  color: #f2ffcc;
 }
 
 /* ==========================================================
